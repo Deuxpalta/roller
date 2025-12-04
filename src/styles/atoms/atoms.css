@@ -1,0 +1,26 @@
+.atom-input {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.atom-button {
+  padding: 8px 12px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.atom-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.login-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
