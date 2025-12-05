@@ -37,7 +37,6 @@ function NavBar() {
           listener.unsubscribe();
         }
       } catch (e) {
-        // ignore
       }
     };
   }, []);
@@ -68,7 +67,6 @@ function NavBar() {
                         console.error('Sign out error:', err);
                       } finally {
                         setIsLoggedIn(false);
-                        // quick redirect to home so UI updates predictably
                         window.location.href = '/login';
                       }
                     }}
