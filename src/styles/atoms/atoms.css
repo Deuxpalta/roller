@@ -1,26 +1,28 @@
 .atom-input {
   padding: 8px 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #6f42c1;
   border-radius: 6px;
   font-size: 14px;
+  background: rgba(111, 66, 193, 0.04);
+  color: inherit;
 }
 
 .atom-button {
   padding: 8px 12px;
-  background: #007bff;
+  background: #6f42c1;
   color: #fff;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.12s ease;
+}
+
+.atom-button:hover {
+  background: #5930a8;
+  transform: translateY(-1px);
 }
 
 .atom-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-}
-
-.login-form {
-  display: flex;
-  align-items: center;
-  gap: 8px;
 }
