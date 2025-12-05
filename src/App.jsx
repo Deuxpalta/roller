@@ -14,14 +14,35 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
+    const { data } = supabase.auth.onAuthStateChange((_event, session) => {
       if (!session) {
         navigate('/login');
       } else {
-        navigate('/');
+        // Only redirect to home when the user is currently on the login page.
+        // This prevents forcing logged-in users away from other pages they purposely visit.
+        if (window.location.pathname === '/login') {
+          navigate('/');
+        }
       }
     });
-  }, []);
+
+    // Check initial session on mount and redirect to login if there's no session
+    (async () => {
+      try {
+        const sessionResp = await supabase.auth.getSession();
+        if (!sessionResp?.data?.session && window.location.pathname !== '/login') {
+          navigate('/login');
+        }
+      } catch (err) {
+        // ignore errors here; listener will handle state changes
+      }
+    })();
+
+    // cleanup subscription on unmount
+    return () => {
+      if (data?.subscription) data.subscription.unsubscribe();
+    };
+  }, [navigate]);
   return (
     <>
       <NavBar />
